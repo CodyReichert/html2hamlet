@@ -2,16 +2,12 @@ import os, re, sys
 from bs4 import BeautifulSoup as bs
 from bs4 import Comment
 
-# read the original html file, get a Soup object
-#rawHtml = open('homepage.html').read()
+# get the original html file, make a Soup object
 with open(sys.argv[1]) as rawHtml:
   html = bs(rawHtml.read())
 
-# Just creating a new file manually for now
+# Create an intermediate file manually for now
 result = 'result.html'
-
-# create final target file
-new = 'homepage.hamlet'
 
 # extract comments from html
 comments = html.findAll(text=lambda text:isinstance(text, Comment))
@@ -29,12 +25,15 @@ pattern = re.compile(r"\s*</.*>")
 # open prettified file for parsing
 newHtml = open(result).readlines()
 
+# create final target file
+finalName = os.path.splitext(str(sys.argv[1]))[0]
+final = finalName + '.hamlet'
+
 # write all lines except end tags to target file
 for line in newHtml:
   if pattern.match(line) is None:
-    print line
-    with open(new, 'a') as newout:
-      newout.write(line)
+    with open(final, 'a') as finalout:
+      finalout.write(line)
 
-# remove intermediate target file
+# cleanup intermediate file
 os.remove(result)
