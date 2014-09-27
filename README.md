@@ -3,12 +3,12 @@ html2hamlet
 
 A simple python script that takes an html file and outputs a hamlet file for use with Yesod
 
-## Usage
+#### Usage
 
 Run:
     python parser.py <filename.html>
 
-# TODO
+#### TODO
 
 - cleanup
 - name target file based on input file name
