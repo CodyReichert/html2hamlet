@@ -15,4 +15,4 @@ Run:
 - create target file name based on input file
 - Preserver HTML comments
   - Comments that end on the same line as a closing tag are the problem
-  - E.g. '</div>-->'
+  - E.g. '<\/div>-->'
