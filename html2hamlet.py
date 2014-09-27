@@ -1,11 +1,11 @@
-import os
-import re
+import os, re, sys
 from bs4 import BeautifulSoup as bs
 from bs4 import Comment
 
 # read the original html file, get a Soup object
-rawHtml = open('homepage.html').read()
-html = bs(rawHtml)
+#rawHtml = open('homepage.html').read()
+with open(sys.argv[1]) as rawHtml:
+  html = bs(rawHtml.read())
 
 # Just creating a new file manually for now
 result = 'result.html'
