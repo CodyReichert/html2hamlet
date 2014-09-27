@@ -1,3 +1,4 @@
+import os
 import re
 from bs4 import BeautifulSoup as bs
 from bs4 import Comment
@@ -33,3 +34,6 @@ for line in newHtml:
   if pattern.match(line) is None:
     with open(new, 'a') as newout:
       newout.write(line)
+
+# remove intermediate target file
+os.remove(result)
