@@ -1,18 +1,19 @@
 html2hamlet
 ===========
 
-Convert html files to hamlet files
-
+A simple python script that takes an html file and outputs a hamlet file for use with Yesod
 
 ## Usage
 
 Run:
-    python parser.py
+    python parser.py <filename.html>
 
 # TODO
 
-- remove hardcoded html file and allow for command line argument
-- create target file name based on input file
+- cleanup
+- name target file based on input file name
 - Preserver HTML comments
-  - Comments that end on the same line as a closing tag are the problem
-  - E.g. '<\/div>-->'
+  - Currently it's stripping all comments because comments that end on the same
+    line as a closing tag (e.g. "</div> -->") get removed and the comment never ends.
+- Change class and id names to Shakespearean format (e.g. class="foo" -> .foo)
+- Two space indent in target file instead of 1 space.
