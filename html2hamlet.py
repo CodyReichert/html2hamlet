@@ -35,5 +35,14 @@ with open(final, 'w') as finalout:
     if pattern.match(line) is None:
       finalout.write(line)
 
+
+classPattern = re.compile(r".*class=\".*\"")
+with open(final, 'r') as finalout:
+  for line in finalout:
+    if classPattern.match(line):
+      line = re.sub(r"class=\"(.*?)\"", r".\1", line.rstrip())
+      print line
+    
+
 # cleanup intermediate file
 os.remove(result)
