@@ -17,3 +17,4 @@ Run:
     line as a closing tag (e.g. <code></ close> --></code>) get removed and the comment would never end.
 - Change class and id names to Shakespearean format (e.g. class="foo" -> .foo)
 - Two space indent in target file instead of 1 space.
+- Keep BS from putting html and body tags at the top of every file.
