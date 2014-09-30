@@ -1,4 +1,4 @@
-import os, re, sys
+import os, re, sys, fileinput
 from bs4 import BeautifulSoup as bs
 from bs4 import Comment
 
@@ -35,14 +35,20 @@ with open(final, 'w') as finalout:
     if pattern.match(line) is None:
       finalout.write(line)
 
+# function far replace html with hamlet syntax for classes
+def changeClasses(matched):
+  matched = matched.split()
+  newClasses = []
+  for match in matched:
+    newClasses.append( "." + match)
+  return ' '.join(newClasses)
 
+# replace html classes with hamlet syntax
 classPattern = re.compile(r".*class=\".*\"")
-with open(final, 'r') as finalout:
-  for line in finalout:
-    if classPattern.match(line):
-      line = re.sub(r"class=\"(.*?)\"", r".\1", line.rstrip())
-      print line
-    
+for line in fileinput.input(final, inplace=True):
+  if classPattern.match(line) or line.rstrip():
+    line = re.sub(r"class=\"(.*?)\"", lambda m: changeClasses(m.group(1)), line.rstrip())
+    print line
 
 # cleanup intermediate file
 os.remove(result)
