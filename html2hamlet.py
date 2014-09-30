@@ -35,6 +35,9 @@ with open(final, 'w') as finalout:
     if pattern.match(line) is None:
       finalout.write(line)
 
+# class and id regex pattern match
+classPattern = re.compile(r".*class=\".*\"")
+idPattern = re.compile(r".*id=\".*\"")
 # function far replace html with hamlet syntax for classes
 def changeClasses(matched):
   matched = matched.split()
@@ -42,12 +45,22 @@ def changeClasses(matched):
   for match in matched:
     newClasses.append( "." + match)
   return ' '.join(newClasses)
+def changeIds(matched):
+  matched = matched.split()
+  newClasses = []
+  for match in matched:
+    newClasses.append( "#" + match)
+  return ' '.join(newClasses)
 
 # replace html classes with hamlet syntax
-classPattern = re.compile(r".*class=\".*\"")
+# TODO: refactor, no need to open the file twice
 for line in fileinput.input(final, inplace=True):
   if classPattern.match(line) or line.rstrip():
     line = re.sub(r"class=\"(.*?)\"", lambda m: changeClasses(m.group(1)), line.rstrip())
+    print line
+for line in fileinput.input(final, inplace=True):
+  if idPattern.match(line) or line.rstrip():
+    line = re.sub(r"id=\"(.*?)\"", lambda m: changeIds(m.group(1)), line.rstrip())
     print line
 
 # cleanup intermediate file
