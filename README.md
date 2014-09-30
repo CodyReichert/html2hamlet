@@ -6,6 +6,7 @@ A simple python script that takes an html file and outputs a hamlet file for use
 #### Usage
 
 Run:
+    
     python parser.py "filename.html"
     
 This will output filename.hamlet into the current directory
