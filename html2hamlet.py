@@ -30,7 +30,7 @@ finalName = os.path.splitext(str(sys.argv[1]))[0]
 final = finalName + '.hamlet'
 
 # write all lines except end tags to target file
-with open(final, 'a') as finalout:
+with open(final, 'w') as finalout:
   for line in newHtml:
     if pattern.match(line) is None:
       finalout.write(line)
