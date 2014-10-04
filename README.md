@@ -7,13 +7,12 @@ A simple python script that takes an html file and outputs a hamlet file for use
 
 Run:
     
-    python parser.py "filename.html"
+    python html2hamlet.py "filename.html"
     
 This will output filename.hamlet into the current directory
 
 #### TODO
 
-- cleanup
 - Preserver HTML comments
   - Currently it's stripping all comments because comments that end on the same
     line as a closing tag (e.g. <code></ close> --></code>) get removed and the comment would never end.
