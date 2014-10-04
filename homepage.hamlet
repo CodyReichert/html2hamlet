@@ -1,0 +1,39 @@
+<nav .navbar .navbar-default .navbar-fixed-top role="navigation">
+ <div .navbar-header>
+  <button .navbar-toggle type="button">
+   <span .sr-only>
+    Toggle navigation
+   <span .icon-bar>
+   <span .icon-bar>
+   <span .icon-bar>
+  <div .navbar-center .navbar-brand>
+   <a href="#">
+    <img alt="KW Farm and Ranch Group Logo" src="/images/kwfrlogo.png">
+ <div .collapse .navbar-collapse #navbar-collapse-1>
+  <ul .nav .navbar-nav .navbar-left>
+   <li>
+    <div .fa .fa-facebook>
+   <li>
+    <div .fa .fa-google-plus>
+   <li>
+    <div .fa .fa-twitter>
+   <li>
+    <div .fa .fa-vimeo-square>
+  <br>
+  <br>
+  <br>
+  <hr>
+  <ul .nav .navbar-nav .navbar-right>
+   <li>
+    <a href="#">
+     Link
+   <li>
+    <a href="#">
+     Link
+   <li>
+    <a href="#">
+     Link
+   <li .dropdown>
+    <a .dropdown-toggle href="#">
+     Dropdown
+     <b .caret>
