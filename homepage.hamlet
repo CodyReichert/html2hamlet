@@ -8,7 +8,7 @@
    <span .icon-bar>
   <div .navbar-center .navbar-brand>
    <a href="#">
-    <img alt="KW Farm and Ranch Group Logo" src="/images/kwfrlogo.png">
+    <img alt="KW Farm and Ranch Group Logo" src=@{StaticR_img_kwfrlogo_png}>
  <div .collapse .navbar-collapse #navbar-collapse-1>
   <ul .nav .navbar-nav .navbar-left>
    <li>
