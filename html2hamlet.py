@@ -1,4 +1,4 @@
-import os, re, sys, fileinput
+import os, ntpath, re, sys, fileinput
 from bs4 import BeautifulSoup as bs
 from bs4 import Comment
 
@@ -33,7 +33,7 @@ classPattern = re.compile(r".*class=\".*\"")
 idPattern = re.compile(r".*id=\".*\"")
 voidTagPattern = re.compile(r".*<(.*)/>")
 
-# function far replace html with hamlet syntax for classes
+# functions that change classes, id's, img src's to hamlet syntax
 def changeClasses(matched):
   matched = matched.split()
   newClasses = []
@@ -48,13 +48,21 @@ def changeIds(matched):
     newIds.append( "#" + match)
   return ' '.join(newIds)
 
-# replace html classes with hamlet syntax
+def changeImgLinks(matched):
+  fileExtension = os.path.splitext(matched[1])[1]
+  fileName = os.path.splitext(ntpath.basename(matched[1]))[0]
+  tagOpen = matched[0]
+  tagSrc = '@{StaticR_img_' + fileName + '_' + fileExtension[1:] + '}'
+  tagClose = matched[2][1:]
+  newImgTag = tagOpen + tagSrc + tagClose
+  return newImgTag
+
 for line in fileinput.input(final, inplace=True):
-  if classPattern.match(line) or idPattern.match(line) or voidTagPattern.match(line) or line.rstrip():
-    line = re.sub(r"class=\"(.*?)\"", lambda m: changeClasses(m.group(1)), line.rstrip())
-    line = re.sub(r"id=\"(.*?)\"", lambda m: changeIds(m.group(1)), line.rstrip())
-    line = re.sub(r"(.*)<(.*)/>", r"\1<\2>", line.rstrip())
-    print line
+  line = re.sub(r"class=\"(.*?)\"", lambda m: changeClasses(m.group(1)), line.rstrip())
+  line = re.sub(r"id=\"(.*?)\"", lambda m: changeIds(m.group(1)), line.rstrip())
+  line = re.sub(r'(.*<img.*src=)("(?!http).*?)(".*)', lambda m: changeImgLinks(m.groups()), line.rstrip())
+  line = re.sub(r"(.*)<(.*)/>", r"\1<\2>", line.rstrip())
+  print line
 
 # cleanup intermediate file
 os.remove(prettyHtml)
