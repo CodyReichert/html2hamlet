@@ -57,7 +57,7 @@ directory of your yesod project, this *should* take care of the rest. For exampl
 
 becomes:
 
-    <img .thumbnail src=@{StaticR_img_myimg_jpg}>
+    <img .thumbnail src=@{StaticR img_myimg_jpg}>
 
 *Note: img src links that start with `http` are omitted, so any images you're linking to will be ok*
 
