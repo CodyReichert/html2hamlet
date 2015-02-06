@@ -3,6 +3,24 @@ html2hamlet
 
 A simple python script that takes an html file and outputs a hamlet file for use with Yesod
 
+### Installation
+
+The only dependency is Beautiful Soup (used for parsing the HTML). You can optionally use a
+virtual environment or install the dependecies globally:
+
+    $ git clone git@github.com:CodyReichert/html2hamlet
+    $ cd html2hamlet/
+
+(optional)
+
+    $ virtualenv venv
+    $ source venv/bin/activate
+
+(required)
+
+    $ pip install beautifulsoup4
+    $ python html2hamlet.py YOUR_HTML_FILE
+
 #### Usage
 
 Run:
