@@ -1,7 +1,10 @@
-html2hamlet
-===========
+# html2hamlet
 
-A simple python script that takes an html file and outputs a hamlet file for use with Yesod
+A simple python script that takes an html file and outputs a [hamlet file](https://www.yesodweb.com/book/shakespearean-templates#shakespearean-templates_hamlet_html) for use with [Yesod](https://www.yesodweb.com/)
+
+### Requirements
+
+- Python 3
 
 ### Installation
 
@@ -24,12 +27,13 @@ virtual environment or install the dependecies globally:
 #### Usage
 
 Run:
-    
+
     python html2hamlet.py "filename.html"
-    
+
 This will output filename.hamlet into the current directory
 
 #### Features
+
 Run this script with any html file as the first argument. The output will be a
 `.hamlet` file in the current directory. All end tags are removed, all classes in any element are
 transformed to proper hamlet syntax. For example:
@@ -39,7 +43,7 @@ transformed to proper hamlet syntax. For example:
 
 becomes
 
-    <div .foo> 
+    <div .foo>
 
 And the same for Id's:
 
@@ -51,7 +55,7 @@ becomes
     <div .foo #bar>
 
 Img `src` attributes are also transformed. If you move all of the static images to the `/static/img/`
-directory of your yesod project, this *should* take care of the rest. For example:
+directory of your yesod project, this _should_ take care of the rest. For example:
 
     <img class="thumbnail" src="/static/img/myimg.jpg">
 
@@ -59,7 +63,7 @@ becomes:
 
     <img .thumbnail src=@{StaticR img_myimg_jpg}>
 
-*Note: img src links that start with `http` are omitted, so any images you're linking to will be ok*
+_Note: img src links that start with `http` are omitted, so any images you're linking to will be ok_
 
 #### TODO
 
