@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup as bs
 from bs4 import Comment
 
 # get file from arg, make a Soup object
-html = bs(open(sys.argv[1]))
+html = bs(open(sys.argv[1]),features="html.parser")
 
 # extract comments from html
 comments = html.findAll(text=lambda text:isinstance(text, Comment))
@@ -13,7 +13,7 @@ comments = html.findAll(text=lambda text:isinstance(text, Comment))
 # This also puts all end tags on their own line
 prettyHtml = 'result.html'
 with open(prettyHtml, 'w') as resultout:
-    resultout.write(html.prettify('utf-8'))
+    resultout.write(html.prettify('utf-8').decode("utf-8"))
 
 # regex pattern to find end tags
 pattern = re.compile(r"\s*</.*>")
@@ -62,7 +62,7 @@ for line in fileinput.input(final, inplace=True):
   line = re.sub(r"id=\"(.*?)\"", lambda m: changeIds(m.group(1)), line.rstrip())
   line = re.sub(r'(.*<img.*src=)("(?!http).*?)(".*)', lambda m: changeImgLinks(m.groups()), line.rstrip())
   line = re.sub(r"(.*)<(.*)/>", r"\1<\2>", line.rstrip())
-  print line
+  print(line)
 
 # cleanup intermediate file
 os.remove(prettyHtml)
